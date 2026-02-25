@@ -3,11 +3,11 @@ public class Reservation {
     String statut;
     Client client;
     Hebergement[] hebergement;
-    String dates;
+    int[] dates;
     float prix;
     String date_reservation;
 
-    void Calcule_prix_total() {
+    void Calcul_prix_total() {
 
     }
 
