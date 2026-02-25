@@ -1,12 +1,25 @@
 public class Reservation {
     int id;
     String statut;
-    String objet;
+    Client client;
+    Hebergement[] hebergement;
+    String dates;
     float prix;
-    String dateReservation;
-    String dateDebut;
-    String dateFin;
+    String date_reservation;
 
+    void Calcule_prix_total() {
 
+    }
 
+    void Verif_confirmation() {
+
+    }
+
+    void Application_reduc() {
+
+    }
+
+    void Annuler_reservation() {
+
+    }
 }
