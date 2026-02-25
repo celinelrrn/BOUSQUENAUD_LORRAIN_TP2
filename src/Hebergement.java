@@ -1,5 +1,5 @@
 public class Hebergement {
-    String identifiant;
+    int id;
     String nom;
     String adresse;
     String type;
@@ -7,6 +7,7 @@ public class Hebergement {
     int prix;
     String description;
     String[] equipements;
+
 
 
 
