@@ -1,5 +1,5 @@
 public class Hebergement {
-    //mettre en privé?? pour sécurité?? jsp
+
     public String identifiant;
     public String nom;
     public String adresse;
@@ -9,6 +9,17 @@ public class Hebergement {
     public String description;
     public String[] equipements;
 
+    public Hebergement(){
+        this.identifiant=null;
+        this.nom=null;
+        this.adresse=null;
+        this.type=null;
+        this.nbMaxPersonne=0;
+        this.prix=0;
+        this.description=null;
+        this.equipements=null;
+    }
+
     //méthodes
     //si dates libres renvoie 1 sinon 0
     public int dates_libres(){
@@ -16,7 +27,7 @@ public class Hebergement {
         return 0;
     }
 
-    public void Resume(){}//affcihe les infos?
+    public void Resume(){}//affiche les infos?
 
     public int prixTotal(){return 0;}
 
