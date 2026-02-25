@@ -13,6 +13,7 @@ public class Reservation {
 
     void Verif_confirmation() {
 
+
     }
 
     void Application_reduc() {
