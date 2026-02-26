@@ -3,14 +3,14 @@ import java.time.LocalTime;
 
 public class Reservation {
     private int id;
-    private String statut;
+    private int statut; //0->annulé, 1->en cours, 2->confirmé
     private Client client;
     private Hebergement hebergement;
     private Periodes periode;
     private double prix;
     private LocalDate date_reservation;
 
-    public Reservation (int id, String statut, Hebergement hebergement, Client client, Periodes periode, double prix, LocalDate reserv){
+    public Reservation (int id, int statut, Hebergement hebergement, Client client, Periodes periode, double prix, LocalDate reserv){
         this.id=id;
         this.statut=statut;
         this.hebergement = hebergement;
@@ -39,12 +39,12 @@ public class Reservation {
     public Client getClient() {
         return client;
     }
-    public String getStatut() {
+    public int getStatut() {
         return statut;
     }
 
     //setter
-    public void setStatut(String statut) {
+    public void setStatut(int statut) {
         this.statut = statut;
     }
     public void setPrix(double prix) {
