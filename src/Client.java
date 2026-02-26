@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Client {
     private String nom;
@@ -18,6 +19,7 @@ public class Client {
         this.mdp = mdp;
         this.adresse = adresse;
         this.date_inscription = date_inscription;
+        this.reservations = new ArrayList<>();
     }
 
     ArrayList<Hebergement> filtrer (ArrayList<Hebergement> hebergements) {
@@ -58,6 +60,36 @@ class NouveauClient extends Client {
         super(nom, prenom, email, mdp, adresse, date_inscription);
     }
 
+    public Client Sinscrire () {
+        String nom;
+        String prenom;
+        String email;
+        String mdp;
+        String adresse;
+        String date_inscription;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("===== S'inscrire =====");
+        System.out.print("Nom : ");
+        nom = sc.nextLine();
+        System.out.print("Prenom : ");
+        prenom = sc.nextLine();
+        System.out.print("Email : ");
+        email = sc.nextLine();
+        System.out.print("Mot de passe : ");
+        mdp = sc.nextLine();
+        System.out.print("Adresse : ");
+        adresse = sc.nextLine();
+
+        date_inscription = "jsp"; // A VOIR
+
+        Client client = new Client(nom, prenom, email, mdp, adresse, date_inscription);
+        return client;
+    }
+
+    public void Verif_reduction() {
+        System.out.println("Pas encore de reduction");
+    }
 }
 
 class AncienClient extends Client {
@@ -65,5 +97,16 @@ class AncienClient extends Client {
 
     public AncienClient(String nom, String prenom, String email, String mdp, String adresse, String date_inscription) {
         super(nom, prenom, email, mdp, adresse, date_inscription);
+    }
+
+    public void Historique_reservations() {
+        System.out.println("Vos reservations :");
+        for(int i = 0; i < reservations.size(); i++) {
+            System.out.println(reservations.get(i));
+        }
+    }
+
+    public void Verif_reduction() {
+
     }
 }
