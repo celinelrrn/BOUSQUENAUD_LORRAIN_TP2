@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Reservation {
     private int id;
@@ -52,24 +51,30 @@ public class Reservation {
     }
 
 
-    void Calcul_prix_total_reduc() {
-
-        double prix_sansReduc = this.hebergement.prix;
-        double reduc = this.client.Verif_reduction();
+    //calcule le prix avec reduc en fonction du nombre de nuits et du prix sans reduc
+    public void Calcul_prix_total_reduc() {
+        double prix_sansReduc = this.hebergement.prixTotal(this.periode.getDateDebut(), this.periode.getDateFin());
+        double reduc = 0.02*this.client.Verif_reduction();
         double prix_avecReduc = prix_sansReduc-(reduc * prix_sansReduc);
     }
 
     //retourne 1 si confirmée sinon 0
-    void Verif_confirmation() {
-
-
+    public boolean Verif_confirmation() {
+        if(this.statut==2){
+            System.out.println("Réservation confirmée");
+            return true;
+        }
+        else if(this.statut==1){
+            System.out.println("Réservation en cours");
+            return false;
+        }
+        else{
+            System.out.println("Réservation annulée");
+            return false;
+        }
     }
 
-    void Application_reduc() {
-
-    }
-
-    void Annuler_reservation() {
-
+    public void Annuler_reservation() {
+        this.statut=0;
     }
 }
