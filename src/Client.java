@@ -39,6 +39,11 @@ public class Client {
         ArrayList <Hebergement> resultat = new ArrayList<>();
         // on fait des criteres precis un par un ??
 
+        for (int i = 0; i<hebergements.size(); i++) {
+            // type, ville, dates, prix,
+
+        }
+
         return resultat;
     }
 
@@ -52,16 +57,17 @@ public class Client {
     }
 
     public void Reserver (Hebergement hebergement, LocalDate debut, LocalDate fin) {
-        if (true/*fonction pour savoir s'il est dispo dans la classe hebergement*/) {
+        if (hebergement.dates_libres(debut, fin)) {
             Random random = new Random();
             Periodes p = new Periodes(debut, fin);
             Reservation reservation = new Reservation(random.nextInt(100), 1, hebergement, this, p, 0, LocalDate.now());
             reservations.add(reservation);
+            reservation.setStatut(2);
         }
     }
 
     public void Annuler_reservation(Reservation reservation) {
-        reservation.Annuler_reservation(); // a creer dans la classe Reservation
+        reservation.Annuler_reservation();
         reservations.remove(reservation);
     }
 
@@ -145,6 +151,7 @@ class AncienClient extends Client {
     }
 
     public int Verif_reduction() {
-        return 0;
+        ArrayList <Reservation> reservations = getReservations();
+        return reservations.size();
     }
 }
