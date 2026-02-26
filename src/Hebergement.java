@@ -15,7 +15,7 @@ public class Hebergement {
     public ArrayList<String> equipements;
     public ArrayList <Double> notes;
     public double moyenne;
-    private ArrayList <Periodes> periodes_dispo;
+    public ArrayList <Periodes> periodes_dispo;
 
 
     public Hebergement(int id, String nom, String adr, String type, int nbMaxpers, double p, String d, double moyenne){
@@ -77,7 +77,7 @@ public class Hebergement {
         int j1= debut.getDayOfMonth();
         int j2 = fin.getDayOfMonth();
         int nb_nuits = j2-j1;
-        return (this.prix*nb_nuits) ;
+        return (this.prix*nb_nuits);
     }
 
     //ajoute une dispo
