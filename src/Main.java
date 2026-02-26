@@ -30,6 +30,7 @@ public class Main {
         switch(choix){
             case 1:
                 //CODE POUR SINSCRIRE
+
                 break;
             case 2:
                 //CODE POUR SE CONNECTER
