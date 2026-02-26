@@ -11,6 +11,18 @@ public class Client {
     private String date_inscription;
     private ArrayList<Reservation> reservations;
 
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public String getMdp(){
+        return mdp;
+    }
+
     // constructeur
     public Client (String nom, String prenom, String email, String mdp, String adresse, String date_inscription) {
         this.nom = nom;
@@ -60,7 +72,7 @@ class NouveauClient extends Client {
         super(nom, prenom, email, mdp, adresse, date_inscription);
     }
 
-    public Client Sinscrire () {
+    public AncienClient Sinscrire () {
         String nom;
         String prenom;
         String email;
@@ -83,7 +95,7 @@ class NouveauClient extends Client {
 
         date_inscription = "jsp"; // A VOIR
 
-        Client client = new Client(nom, prenom, email, mdp, adresse, date_inscription);
+        AncienClient client = new AncienClient(nom, prenom, email, mdp, adresse, date_inscription);
         return client;
     }
 
@@ -93,16 +105,36 @@ class NouveauClient extends Client {
 }
 
 class AncienClient extends Client {
-    ArrayList<Reservation> reservations;
-
     public AncienClient(String nom, String prenom, String email, String mdp, String adresse, String date_inscription) {
         super(nom, prenom, email, mdp, adresse, date_inscription);
     }
 
     public void Historique_reservations() {
+        ArrayList<Reservation> reservations = getReservations();
+
         System.out.println("Vos reservations :");
         for(int i = 0; i < reservations.size(); i++) {
             System.out.println(reservations.get(i));
+        }
+    }
+
+    void Seconnecter(ArrayList<AncienClient> clients) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("===== Seconnecter =====");
+        System.out.print("email : ");
+        String email = sc.nextLine();
+        System.out.println("Mot de passe : ");
+        String mdp = sc.nextLine();
+
+        for (int i = 0; i < clients.size(); i++) {
+
+            AncienClient c = clients.get(i);
+
+            if (c.getEmail().equals(email) && c.getMdp().equals(mdp)) {
+                System.out.println("Connexion réussie !");
+                //return c;
+            }
         }
     }
 
