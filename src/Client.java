@@ -118,7 +118,7 @@ class AncienClient extends Client {
         }
     }
 
-    void Seconnecter(ArrayList<AncienClient> clients) {
+    public static AncienClient Seconnecter(ArrayList<AncienClient> clients) {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("===== Seconnecter =====");
@@ -129,13 +129,15 @@ class AncienClient extends Client {
 
         for (int i = 0; i < clients.size(); i++) {
 
-            AncienClient c = clients.get(i);
+            AncienClient client = clients.get(i);
 
-            if (c.getEmail().equals(email) && c.getMdp().equals(mdp)) {
+            if (client.getEmail().equals(email) && client.getMdp().equals(mdp)) {
                 System.out.println("Connexion réussie !");
-                //return c;
+                return client;
             }
         }
+        System.out.println("Email ou mot de passe incorrect.");
+        return null;
     }
 
     public void Verif_reduction() {
