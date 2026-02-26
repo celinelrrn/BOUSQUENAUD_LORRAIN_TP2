@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Hebergement {
 
-    public int id_unique;
+    private int id_unique;
     public String nom;
-    public String adresse;
+    private String adresse;
     public String type;
     public int nbMaxPersonne;
     public double prix;
@@ -15,7 +15,7 @@ public class Hebergement {
     public ArrayList<String> equipements;
     public ArrayList <Double> notes;
     public double moyenne;
-    public ArrayList <Periodes> periodes_dispo;
+    private ArrayList <Periodes> periodes_dispo;
 
 
     public Hebergement(int id, String nom, String adr, String type, int nbMaxpers, double p, String d, double moyenne){
@@ -32,7 +32,17 @@ public class Hebergement {
         this.periodes_dispo=new ArrayList<>();
     }
 
+    public int getId_unique() {
+        return id_unique;
+    }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public ArrayList<Periodes> getPeriodes_dispo() {
+        return periodes_dispo;
+    }
 
     //méthodes
     //si dates libres renvoie 1 sinon 0
@@ -97,6 +107,10 @@ public class Hebergement {
             sum+=this.notes.get(i);
         }
         this.moyenne= sum/this.notes.size();
+    }
+
+    public void Add_Equipements(String eqpmt){
+        this.equipements.add(eqpmt);
     }
 
     /*public static void main(String[] args){
