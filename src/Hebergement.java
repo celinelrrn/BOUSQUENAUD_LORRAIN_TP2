@@ -8,6 +8,7 @@ public class Hebergement {
     private int id_unique;
     public String nom;
     private String adresse;
+    private String ville;
     public String type;
     public int nbMaxPersonne;
     public double prix;
@@ -18,10 +19,11 @@ public class Hebergement {
     public ArrayList <Periodes> periodes_dispo;
 
 
-    public Hebergement(int id, String nom, String adr, String type, int nbMaxpers, double p, String d, double moyenne){
+    public Hebergement(int id, String nom, String adr, String type, int nbMaxpers, double p, String d, double moyenne, String ville){
         this.id_unique=id;
         this.nom=nom;
         this.adresse=adr;
+        this.ville=ville;
         this.type=type;
         this.nbMaxPersonne=nbMaxpers;
         this.prix=p;
@@ -43,6 +45,11 @@ public class Hebergement {
     public ArrayList<Periodes> getPeriodes_dispo() {
         return periodes_dispo;
     }
+
+    public String getVille() {
+        return ville;
+    }
+
 
     //méthodes
     //si dates libres renvoie 1 sinon 0
