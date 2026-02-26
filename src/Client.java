@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Client {
     private String nom;
@@ -52,7 +53,9 @@ public class Client {
 
     public void Reserver (Hebergement hebergement, LocalDate debut, LocalDate fin) {
         if (true/*fonction pour savoir s'il est dispo dans la classe hebergement*/) {
-            Reservation reservation = new Reservation(hebergement, this);
+            Random random = new Random();
+            Periodes p = new Periodes(debut, fin);
+            Reservation reservation = new Reservation(random.nextInt(100), 1, hebergement, this, p, 0, LocalDate.now());
             reservations.add(reservation);
         }
     }
@@ -62,8 +65,8 @@ public class Client {
         reservations.remove(reservation);
     }
 
-    public void Verif_reduction() {
-
+    public int Verif_reduction() {
+        return 0;
     }
 }
 
@@ -99,8 +102,9 @@ class NouveauClient extends Client {
         return client;
     }
 
-    public void Verif_reduction() {
+    public int Verif_reduction() {
         System.out.println("Pas encore de reduction");
+        return 0;
     }
 }
 
@@ -140,7 +144,7 @@ class AncienClient extends Client {
         return null;
     }
 
-    public void Verif_reduction() {
-
+    public int Verif_reduction() {
+        return 0;
     }
 }
