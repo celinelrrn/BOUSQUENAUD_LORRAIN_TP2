@@ -35,15 +35,21 @@ public class Client {
         this.reservations = new ArrayList<>();
     }
 
-    ArrayList<Hebergement> filtrer (ArrayList<Hebergement> hebergements) {
-        ArrayList <Hebergement> resultat = new ArrayList<>();
-        // on fait des criteres precis un par un ??
+    ArrayList<Hebergement> filtrer (ArrayList<Hebergement> hebergements, Periodes periode, String type, String ville, double prixMin, double prixMax, int nbPersonnes) {
+        ArrayList <Hebergement> resultat = new ArrayList<>(); // renvoyer une liste d'hebergements correspondant aux critères
 
         for (int i = 0; i<hebergements.size(); i++) {
-            // type, ville, dates, prix,
+            Hebergement hebergement = hebergements.get(i);
+            if (hebergement.getAdresse().toLowerCase().contains(ville.toLowerCase())
+                    && hebergement.type.equalsIgnoreCase(type)
+                    && hebergement.prix >= prixMin
+                    && hebergement.prix <= prixMax
+                    && hebergement.nbMaxPersonne >= nbPersonnes
+                    && hebergement.dates_libres(periode.getDateDebut(), periode.getDateFin())) {
 
+                resultat.add(hebergement);
+            }
         }
-
         return resultat;
     }
 
