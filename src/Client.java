@@ -62,7 +62,7 @@ public class Client {
         reservations.remove(reservation);
     }
 
-    public void Verif_reduction() {
+    public int Verif_reduction() {
 
     }
 }
@@ -99,7 +99,7 @@ class NouveauClient extends Client {
         return client;
     }
 
-    public void Verif_reduction() {
+    public int Verif_reduction() {
         System.out.println("Pas encore de reduction");
     }
 }
@@ -138,7 +138,7 @@ class AncienClient extends Client {
         }
     }
 
-    public void Verif_reduction() {
+    public int Verif_reduction() {
 
     }
 }

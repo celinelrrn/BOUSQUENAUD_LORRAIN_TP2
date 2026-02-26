@@ -53,9 +53,10 @@ public class Reservation {
 
 
     void Calcul_prix_total_reduc() {
-        double prix_sansReduc = this.hebergement.prix;
-        int nbr_Reservations = 2;
 
+        double prix_sansReduc = this.hebergement.prix;
+        double reduc = this.client.Verif_reduction();
+        double prix_avecReduc = prix_sansReduc-(reduc * prix_sansReduc);
     }
 
     //retourne 1 si confirmée sinon 0
