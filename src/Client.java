@@ -5,11 +5,11 @@ import java.util.Random;
 
 abstract class Personne {
 
-    protected String nom;
-    protected String prenom;
-    protected String email;
-    protected String mdp;
-    protected String adresse;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String mdp;
+    private String adresse;
 
     public Personne(String nom, String prenom, String email, String mdp, String adresse) {
         this.nom = nom;
@@ -24,9 +24,6 @@ abstract class Personne {
     public String getEmail() { return email; }
     public String getMdp() { return mdp; }
     public String getAdresse() { return adresse; }
-
-    // Méthode abstraite que les classes filles doivent définir
-    public abstract int Verif_reduction();
 }
 
 
@@ -66,10 +63,10 @@ public class Client extends Personne {
     }
 
     public void Afficher_infos() {
-        System.out.println("Nom : " + nom);
-        System.out.println("Prénom : " + prenom);
-        System.out.println("Email : " + email);
-        System.out.println("Adresse : " + adresse);
+        System.out.println("Nom : " + getNom());
+        System.out.println("Prénom : " + getPrenom());
+        System.out.println("Email : " + getEmail());
+        System.out.println("Adresse : " + getAdresse());
         System.out.println("Date d'inscription : " + date_inscription);
         System.out.println("Nombre de réservations : " + reservations.size());
     }
