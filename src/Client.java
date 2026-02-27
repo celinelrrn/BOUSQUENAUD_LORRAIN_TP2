@@ -28,7 +28,7 @@ abstract class Personne {
 
 
 public class Client extends Personne {
-    private String date_inscription;
+    private LocalDate date_inscription;
     private ArrayList<Reservation> reservations;
 
     public ArrayList<Reservation> getReservations() {
@@ -37,10 +37,10 @@ public class Client extends Personne {
 
     // constructeur
     public Client(String nom, String prenom, String email, String mdp,
-                  String adresse, String date_inscription) {
+                  String adresse) {
 
         super(nom, prenom, email, mdp, adresse); // appel au constructeur Personne
-        this.date_inscription = date_inscription;
+        this.date_inscription = LocalDate.now();
         this.reservations = new ArrayList<>();
     }
 
@@ -94,8 +94,8 @@ public class Client extends Personne {
 }
 
 class NouveauClient extends Client {
-    public NouveauClient(String nom, String prenom, String email, String mdp, String adresse, String date_inscription) {
-        super(nom, prenom, email, mdp, adresse, date_inscription);
+    public NouveauClient(String nom, String prenom, String email, String mdp, String adresse) {
+        super(nom, prenom, email, mdp, adresse);
     }
 
     public AncienClient Sinscrire () {
@@ -119,9 +119,7 @@ class NouveauClient extends Client {
         System.out.print("Adresse : ");
         adresse = sc.nextLine();
 
-        date_inscription = "jsp"; // A VOIR
-
-        AncienClient client = new AncienClient(nom, prenom, email, mdp, adresse, date_inscription);
+        AncienClient client = new AncienClient(nom, prenom, email, mdp, adresse);
         return client;
     }
 
@@ -132,8 +130,8 @@ class NouveauClient extends Client {
 }
 
 class AncienClient extends Client {
-    public AncienClient(String nom, String prenom, String email, String mdp, String adresse, String date_inscription) {
-        super(nom, prenom, email, mdp, adresse, date_inscription);
+    public AncienClient(String nom, String prenom, String email, String mdp, String adresse) {
+        super(nom, prenom, email, mdp, adresse);
     }
 
     public String Historique_reservations() {

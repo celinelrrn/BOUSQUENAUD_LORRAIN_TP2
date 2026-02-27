@@ -64,7 +64,7 @@ public class Menu {
     }
 
     private void inscription() {
-        NouveauClient n = new NouveauClient("", "", "", "", "", "");
+        NouveauClient n = new NouveauClient("", "", "", "", "");
         AncienClient inscrit = n.Sinscrire();
         clients.add(inscrit);
         persConnecte = inscrit;
