@@ -67,11 +67,12 @@ public class Hebergement {
 
     //retourne un descriptif de l'hébergement
     public String Resume(){
-        String resume = "Nom: " + this.nom +
-                "\nAdresse: " + this.adresse +
+        String resume = "Description : \nNom: " + this.nom +
+                "\nAdresse: " + this.adresse + this.ville +
                 "\nType: " + this.type +
                 "\nPrix par nuit: " + this.prix +
                 "\nNombre max de personnes: " + this.nbMaxPersonne +
+                "\n Moyenne du logement: " + this.moyenne +
                 "\nEquipements disponibles: ";
         for(int i=0; i<this.equipements.size(); i++){
             resume += this.equipements + ", ";
@@ -81,8 +82,8 @@ public class Hebergement {
 
     //calcule prix total en fonction du nbr de nuits et du prix par nuit
     public double prixTotal(LocalDate debut, LocalDate fin){
-        int j1= debut.getDayOfMonth();
-        int j2 = fin.getDayOfMonth();
+        int j1= debut.getDayOfYear();
+        int j2 = fin.getDayOfYear();
         int nb_nuits = j2-j1;
         return (this.prix*nb_nuits);
     }

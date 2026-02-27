@@ -56,6 +56,7 @@ public class Reservation {
         double prix_sansReduc = this.hebergement.prixTotal(this.periode.getDateDebut(), this.periode.getDateFin());
         double reduc = 0.02*this.client.Verif_reduction();
         double prix_avecReduc = prix_sansReduc-(reduc * prix_sansReduc);
+        this.setPrix(prix_avecReduc);
     }
 
     //retourne 1 si confirmée sinon 0
@@ -74,7 +75,7 @@ public class Reservation {
         }
     }
 
-    public void Annuler_reservation() {
+    public void Annuler() {
         this.statut=0;
     }
 }
