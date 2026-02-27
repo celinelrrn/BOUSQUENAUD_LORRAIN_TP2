@@ -104,7 +104,6 @@ class NouveauClient extends Client {
         String email;
         String mdp;
         String adresse;
-        String date_inscription;
 
         Scanner sc = new Scanner(System.in);
         System.out.print("===== S'inscrire =====");
