@@ -1,8 +1,8 @@
 import java.time.LocalDate;
 
 public class Periodes {
-    public LocalDate debut;
-    public LocalDate fin;
+    private LocalDate debut;
+    private LocalDate fin;
 
     //constructeur
     public Periodes(LocalDate debut, LocalDate fin){

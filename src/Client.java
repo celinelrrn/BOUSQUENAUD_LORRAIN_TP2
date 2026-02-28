@@ -5,11 +5,11 @@ import java.util.Random;
 
 abstract class Personne {
 
-    protected String nom;
-    protected String prenom;
-    protected String email;
-    protected String mdp;
-    protected String adresse;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String mdp;
+    private String adresse;
 
     public Personne(String nom, String prenom, String email, String mdp, String adresse) {
         this.nom = nom;
@@ -25,8 +25,16 @@ abstract class Personne {
     public String getMdp() { return mdp; }
     public String getAdresse() { return adresse; }
 
-    // Méthode abstraite que les classes filles doivent définir
+    //methode abstraite => on la redef dans les classes filles
     public abstract int Verif_reduction();
+
+    //méthode commune à toutes les classes filles
+    public void Afficher_infos() {
+        System.out.println("Nom : " + nom);
+        System.out.println("Prénom : " + prenom);
+        System.out.println("Email : " + email);
+        System.out.println("Adresse : " + adresse);
+    }
 }
 
 
@@ -38,19 +46,17 @@ public class Client extends Personne {
         return reservations;
     }
 
-    // constructeur
     public Client(String nom, String prenom, String email, String mdp,
                   String adresse, String date_inscription) {
-
-        super(nom, prenom, email, mdp, adresse); // appel au constructeur Personne
+        super(nom, prenom, email, mdp, adresse);
         this.date_inscription = date_inscription;
         this.reservations = new ArrayList<>();
     }
 
-    public static ArrayList<Hebergement> Filtrer (ArrayList<Hebergement> hebergements, Periodes periode, String type, String ville, double prixMin, double prixMax, int nbPersonnes) {
-        ArrayList <Hebergement> resultat = new ArrayList<>(); // renvoyer une liste d'hebergements correspondant aux critères
+    public static ArrayList<Hebergement> Filtrer(ArrayList<Hebergement> hebergements, Periodes periode, String type, String ville, double prixMin, double prixMax, int nbPersonnes) {
+        ArrayList<Hebergement> resultat = new ArrayList<>();
 
-        for (int i = 0; i<hebergements.size(); i++) {
+        for (int i = 0; i < hebergements.size(); i++) {
             Hebergement hebergement = hebergements.get(i);
             if (hebergement.getVille().equals(ville)
                     && hebergement.type.equalsIgnoreCase(type)
@@ -58,23 +64,21 @@ public class Client extends Personne {
                     && hebergement.prix <= prixMax
                     && hebergement.nbMaxPersonne >= nbPersonnes
                     && hebergement.dates_libres(periode.getDateDebut(), periode.getDateFin())) {
-
                 resultat.add(hebergement);
             }
         }
         return resultat;
     }
 
+    // Surcharge de Afficher_infos() pour ajouter les infos spécifiques au Client
+    @Override
     public void Afficher_infos() {
-        System.out.println("Nom : " + nom);
-        System.out.println("Prénom : " + prenom);
-        System.out.println("Email : " + email);
-        System.out.println("Adresse : " + adresse);
+        super.Afficher_infos(); // appel à la version de Personne
         System.out.println("Date d'inscription : " + date_inscription);
         System.out.println("Nombre de réservations : " + reservations.size());
     }
 
-    public void Reserver (Hebergement hebergement, LocalDate debut, LocalDate fin) {
+    public void Reserver(Hebergement hebergement, LocalDate debut, LocalDate fin) {
         if (hebergement.dates_libres(debut, fin)) {
             Random random = new Random();
             Periodes p = new Periodes(debut, fin);
@@ -85,7 +89,7 @@ public class Client extends Personne {
     }
 
     public void Annuler_reservation(Reservation reservation) {
-        if(reservation!=null && LocalDate.now().isBefore(reservation.getPeriode().getDateDebut())){
+        if (reservation != null && LocalDate.now().isBefore(reservation.getPeriode().getDateDebut())) {
             reservation.Annuler();
             reservations.remove(reservation);
         }
@@ -101,33 +105,26 @@ class NouveauClient extends Client {
         super(nom, prenom, email, mdp, adresse, date_inscription);
     }
 
-    public AncienClient Sinscrire () {
-        String nom;
-        String prenom;
-        String email;
-        String mdp;
-        String adresse;
-        String date_inscription;
-
+    public AncienClient Sinscrire() {
         Scanner sc = new Scanner(System.in);
         System.out.print("===== S'inscrire =====");
         System.out.print("Nom : ");
-        nom = sc.nextLine();
+        String nom = sc.nextLine();
         System.out.print("Prenom : ");
-        prenom = sc.nextLine();
+        String prenom = sc.nextLine();
         System.out.print("Email : ");
-        email = sc.nextLine();
+        String email = sc.nextLine();
         System.out.print("Mot de passe : ");
-        mdp = sc.nextLine();
+        String mdp = sc.nextLine();
         System.out.print("Adresse : ");
-        adresse = sc.nextLine();
+        String adresse = sc.nextLine();
 
-        date_inscription = "jsp"; // A VOIR
+        String date_inscription = "jsp"; // A VOIR
 
-        AncienClient client = new AncienClient(nom, prenom, email, mdp, adresse, date_inscription);
-        return client;
+        return new AncienClient(nom, prenom, email, mdp, adresse, date_inscription);
     }
 
+    @Override
     public int Verif_reduction() {
         System.out.println("Pas encore de reduction");
         return 0;
@@ -141,32 +138,27 @@ class AncienClient extends Client {
 
     public String Historique_reservations() {
         ArrayList<Reservation> reservations = getReservations();
-
         System.out.println("Vos reservations :");
-        String histo="";
+        String histo = "";
 
-        for(int i = 0; i < reservations.size(); i++) {
-            histo += "Reservation " + (i+1) + ": \nEtablissement :" + reservations.get(i).getHebergement().type + " " + reservations.get(i).getHebergement().nom +
+        for (int i = 0; i < reservations.size(); i++) {
+            histo += "Reservation " + (i + 1) + ": \nEtablissement :" + reservations.get(i).getHebergement().type + " " + reservations.get(i).getHebergement().nom +
                     "\n du " + reservations.get(i).getPeriode().getDateDebut() + " au " + reservations.get(i).getPeriode().getDateFin() +
                     "\n prix : " + reservations.get(i).getPrix() +
                     "\n effectuée le :" + reservations.get(i).getDate_reservation();
-            if(reservations.get(i).getStatut()==0){
+            if (reservations.get(i).getStatut() == 0) {
                 histo += "\nReservation annulée";
-            }
-            else if(reservations.get(i).getStatut()==1){
+            } else if (reservations.get(i).getStatut() == 1) {
                 histo += "\nReservation en cours";
-            }
-            else{
+            } else {
                 histo += "\nReservation confirmée";
             }
-
         }
         return histo;
     }
 
     public static int Seconnecter(ArrayList<Personne> clients) {
         Scanner sc = new Scanner(System.in);
-
         System.out.print("===== Seconnecter =====");
         System.out.print("email : ");
         String email = sc.nextLine();
@@ -174,9 +166,7 @@ class AncienClient extends Client {
         String mdp = sc.nextLine();
 
         for (int i = 0; i < clients.size(); i++) {
-
             Personne client = clients.get(i);
-
             if (client.getEmail().equals(email) && client.getMdp().equals(mdp)) {
                 System.out.println("Connexion réussie !");
                 return i;
@@ -186,8 +176,8 @@ class AncienClient extends Client {
         return -1;
     }
 
+    @Override
     public int Verif_reduction() {
-        ArrayList <Reservation> reservations = getReservations();
-        return reservations.size();
+        return getReservations().size();
     }
 }

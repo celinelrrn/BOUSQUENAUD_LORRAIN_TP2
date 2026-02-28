@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Hebergement {
 
+    //attributs
     private int id_unique;
     public String nom;
     private String adresse;
@@ -18,7 +19,7 @@ public class Hebergement {
     public double moyenne;
     public ArrayList <Periodes> periodes_dispo;
 
-
+    //constructeur
     public Hebergement(int id, String nom, String adr, String type, int nbMaxpers, double p, String d, double moyenne, String ville){
         this.id_unique=id;
         this.nom=nom;
@@ -34,6 +35,7 @@ public class Hebergement {
         this.periodes_dispo=new ArrayList<>();
     }
 
+    //get
     public int getId_unique() {
         return id_unique;
     }
@@ -117,24 +119,8 @@ public class Hebergement {
         this.moyenne= sum/this.notes.size();
     }
 
+    //ajoute un equipement
     public void Add_Equipements(String eqpmt){
         this.equipements.add(eqpmt);
     }
-
-    /*public static void main(String[] args){
-        Hebergement h1 = new Hebergement(null);
-        h1.Add_dispo(LocalDate.of(2026, 5, 15), LocalDate.of(2026, 5, 18));
-        h1.Add_note(8.5);
-        h1.Calcul_moyenne();
-        double prixTot = h1.prixTotal(LocalDate.of(2026, 5, 15), LocalDate.of(2026, 5, 17));
-        System.out.println(h1.Resume());
-        System.out.println("prix total "+ prixTot);
-        if(h1.dates_libres(LocalDate.of(2026, 5, 15), LocalDate.of(2026, 5, 18))){
-            System.out.println("dates libres");
-        }
-        else{
-            System.out.println("dates pas libres");
-        }
-        h1.Suppr_dispo(LocalDate.of(2026, 5, 15), LocalDate.of(2026, 5, 18));
-    }*/
 }

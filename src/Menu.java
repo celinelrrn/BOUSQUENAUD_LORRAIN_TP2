@@ -123,7 +123,7 @@ public class Menu {
         for (int i = 0; i < resultats.size(); i++) {
             System.out.println(i + ") " +
                     resultats.get(i).Resume() +
-                    "\n Prix du séjour : " +
+                    "\n Prix du séjour sans reductions: " +
                     resultats.get(i).prixTotal(debut, fin));
         }
 
@@ -184,6 +184,7 @@ public class Menu {
         System.out.println("Numero de la reservation a annuler :");
         int i = s.nextInt();
         Reservation r = ((Client)persConnecte).getReservations().get(i-1);
+        r.Annuler();
         ((Client)persConnecte).Annuler_reservation(r);
         System.out.println("Reservation annulee");
     }
